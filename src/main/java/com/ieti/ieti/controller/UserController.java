@@ -61,20 +61,27 @@ public class UserController
     {
 
         User userToUpdate=new User(id, userDto.getName(), userDto.getEmail(), userDto.getLastName());
-        userService.update(userToUpdate, id);
-        return new ResponseEntity<User>(userToUpdate, HttpStatus.OK);
+        User updatedUser=userService.update(userToUpdate, id);
+        if(userService==null){
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        else{
+            return new ResponseEntity<User>(updatedUser,HttpStatus.ACCEPTED);
+        }
+
+
     }
 
     @DeleteMapping( "/{id}" )
     public ResponseEntity<Boolean> delete( @PathVariable String id )
     {
         if(userService.findById(id)==null){
-            return new ResponseEntity<Boolean> (HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Boolean> (false, HttpStatus.NOT_FOUND);
 
         }
         else{
             userService.deleteById(id);
-            return new ResponseEntity<Boolean>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
         }
     }
 }

@@ -5,6 +5,10 @@ public class UserDto {
     private String email;
     private String lastName;
 
+    /**
+     * Getters y setters
+     */
+
     public String getName() {
         return name;
     }

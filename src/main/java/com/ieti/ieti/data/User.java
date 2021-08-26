@@ -18,6 +18,12 @@ public class User {
         this.createdAt=new Timestamp(System.currentTimeMillis());
     }
 
+
+    /**
+     * Getters y setters
+     *
+     */
+
     public String getId() {
         return id;
     }
